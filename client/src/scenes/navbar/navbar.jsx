@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Box } from "@mui/system";
 import {
-  Box,
   IconButton,
   InputBase,
   Typography,
@@ -39,7 +39,7 @@ const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : '';
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -47,7 +47,7 @@ const Navbar = () => {
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
-          color="primary"
+          color="black"
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          O.R.R.A 
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
@@ -149,12 +149,10 @@ const Navbar = () => {
             gap="3rem"
           >
             <IconButton
-              onClick={() => dispatch(setMode())}
-              sx={{ fontSize: "25px" }}
-            >
+              onClick={() => dispatch(setMode())}>
               {theme.palette.mode === "dark" ? (
                 <DarkMode sx={{ fontSize: "25px" }} />
-              ) : (
+              ):(
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
